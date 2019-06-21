@@ -7,7 +7,7 @@ namespace r2d2::led_strip {
      */
     struct hsv_s {
         uint8_t hue;
-		uint8_t saturation;
+	uint8_t saturation;
         uint8_t value;
     };
 } // namespace r2d2::led_strip
