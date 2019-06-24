@@ -55,7 +55,7 @@ void r2d2::led_strip::led_c::set_brightness(const uint8_t &percentage) {
     uint16_t green = color.red * percentage / 100;
     uint16_t blue  = color.red * percentage / 100;
 
-	color.red   = (red   > 255)  ? 255 : red;
+    color.red   = (red   > 255)  ? 255 : red;
     color.green = (green > 255)  ? 255 : green;
     color.blue  = (green > blue) ? 255 : blue;
 }
