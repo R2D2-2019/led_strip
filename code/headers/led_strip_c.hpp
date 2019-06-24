@@ -18,6 +18,12 @@ namespace r2d2::led_strip {
          */
         led_strip_c() {};
 
+        /**
+		 *  \brief
+         * function that shows all the given color of the led(s)
+         * 
+         * This function sends the RGB struct of each led to a led_strip. 
+		 */
 		void show();
 
 		/**
