@@ -21,8 +21,14 @@ namespace r2d2::led_strip {
 		void show();
         void set_brightness(const uint8_t &percentage);
 
-		led_c &operator[](int x) {
-            return led[x];
+		/**
+         *  \brief
+         *  [] operator that returns the led selected at x
+		 *
+		 *  prevents out of bound error by using the modulo
+         */
+		led_c &operator[](unsigned int x) {
+            return led[x % N];
 		}
 
 		template <typename T>
