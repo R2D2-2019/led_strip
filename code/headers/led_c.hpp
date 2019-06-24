@@ -31,7 +31,17 @@ public:
 
     void set_color(const rgb_s &rgb);
     void set_color(const hsv_s &hsv);
+
+	/**
+     *  \brief
+     *  function that increases or decreases the brightness by given percentage 0% - 255%
+     *
+     *  the brightness increases by the given percentage when above 100%
+     *  the brightness decreases by the given percentage when below 100%
+	 *  at 100% nothing happens
+     */
     void set_brightness(const uint8_t &percentage);
+
     rgb_s get_color();
 
     };
