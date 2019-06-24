@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 namespace r2d2::led_strip {
     /**
      *  \brief
