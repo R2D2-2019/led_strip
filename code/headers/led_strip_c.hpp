@@ -12,7 +12,11 @@ namespace r2d2::led_strip {
         virtual void send(const rgb_s &rgb) = 0;
 
     public:
-        led_strip_c(){};
+        /**
+         *  \brief
+         *  default constructor
+         */
+        led_strip_c() {};
 
 		void show();
         void set_brightness(const uint8_t &percentage);
