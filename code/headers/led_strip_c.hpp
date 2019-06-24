@@ -19,6 +19,15 @@ namespace r2d2::led_strip {
         led_strip_c() {};
 
 		void show();
+
+		/**
+		 *  \brief
+		 *  function that increases or decreases all leds brightness by given percentage 0% - 255%
+		 *
+		 *  the brightness increases by the given percentage when above 100% 
+		 *  the brightness decreases by the given percentage when below 100% 
+		 *  at 100% nothing happens
+		 */
         void set_brightness(const uint8_t &percentage);
 
 		/**
