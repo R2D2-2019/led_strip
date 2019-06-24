@@ -29,8 +29,27 @@ public:
         set_color(new_color);
 	}
 
+    /**
+     *  \brief
+     *  function that sets the color of an individual led based on RGB values.
+     *
+     *  @param rgb a struct of rgb values
+     *  The color is based of RGB values(red, green blue)
+     *  The maximum values are 255
+	 *  The minimum values are 0
+     */
     void set_color(const rgb_s &rgb);
-    void set_color(const hsv_s &hsv);
+
+    /**
+     *  \brief
+     *  function that sets the color of an individual led based on HSV values.
+     *
+     *  @param hsv a struct of HSV values
+     *  The color is based of HSV values
+     *  The HSV values get transformed in to RGB values for ease of purpose.
+     */
+    void set_color(hsv_s &hsv);
+    
 
 	/**
      *  \brief
@@ -42,6 +61,12 @@ public:
      */
     void set_brightness(const uint8_t &percentage);
 
+    /**
+     *  \brief
+     * Function that returns a struct of RGB values
+     * 
+     *  @return returns a struct of RGB values
+     */
     rgb_s get_color();
 
     };
