@@ -8,7 +8,7 @@ namespace r2d2::led_strip {
     private:
         led_c led[N];
 
-	protected:
+    protected:
         virtual void send(const rgb_s &rgb) = 0;
 
     public:
