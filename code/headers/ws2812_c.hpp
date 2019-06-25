@@ -4,62 +4,64 @@
 #include "hwlib.hpp"
 
 namespace r2d2::led_strip {
+	#define GLOW_WAIT_T0H() asm volatile(".rept 6\n\tNOP\n\t.endr")
+	#define GLOW_WAIT_T0L() asm volatile(".rept 11\n\tNOP\n\t.endr")
+	#define GLOW_WAIT_T1H() asm volatile(".rept 12\n\tNOP\n\t.endr")
+    #define GLOW_WAIT_T1L() asm volatile(".rept 7\n\tNOP\n\t.endr")
+
 	template <unsigned int N>
     class ws2812 : public led_strip_c<N> {
     private:
-        const uint16_t time_0_high_ns = 350;
-        const uint16_t time_0_low_ns  = 800;
-        const uint16_t time_1_high_ns = 700;
-        const uint16_t time_1_low_ns  = 600;
-        const uint16_t time_reset_us  = 50;
+        // 3 bytes per led, 8 bits per byte
+        uint8_t send_bit_buffer[N * 3 * 8];
 
-		uint8_t grb[3];
+        uint8_t grb_buffer[3];
 
         hwlib::pin_out &data_pin;
-        
 
     public:
-        ws2812(hwlib::pin_out &data_out) 
-			: data_pin(data_out){};
+        ws2812(hwlib::pin_out &data_out) : data_pin(data_out){};
 
-		void send() override {
+        void send() override {
             data_pin.write(false);
             data_pin.flush();
-            hwlib::wait_us(70);
-            uint16_t time;
-            uint16_t time2;
-            for (unsigned int current_led = 0; current_led < N; current_led++) {
-                //hwlib::cout << "     ";
-                rgb_s color = (*this)[current_led].get_color();
-                grb[0] = color.green;
-                grb[1] = color.red;
-                grb[2] = color.blue;
+            hwlib::wait_us(50);
 
-                for (auto sending_color : grb) {
+            uint16_t index = 0;
+
+            for (unsigned int i = 0; i < N; i++) {
+                rgb_s rgb_buffer = (*this)[i].get_color();
+                grb_buffer[0] = rgb_buffer.green;
+                grb_buffer[1] = rgb_buffer.red;
+                grb_buffer[2] = rgb_buffer.blue;
+
+                for (auto sending_color : grb_buffer) {
                     for (unsigned int i = 0; i < 8; i++) {
                         if ((sending_color & 128) == 128) {
-                            //hwlib::cout << "1";
-                            data_pin.write(true);
-                            //data_pin.flush();
-                            time = hwlib::now_us();
-                            hwlib::wait_ns_busy(time_1_high_ns);
-                            time2 = hwlib::now_us();
-                            data_pin.write(false);
-                            //data_pin.flush();
-                            hwlib::wait_ns_busy(time_1_low_ns);
+                            send_bit_buffer[index++] = 1;
                         } else {
-                            //hwlib::cout << "0";
-                            data_pin.write(true);
-                            //data_pin.flush();
-                            hwlib::wait_ns_busy(time_0_high_ns);
-                            data_pin.write(false);
-                            //data_pin.flush();
-                            hwlib::wait_ns_busy(time_0_low_ns);
+                            send_bit_buffer[index++] = 0;
                         }
                         sending_color <<= 1;
                     }
                 }
             }
-		}
+
+			for (uint8_t bit : send_bit_buffer) {
+                 if (bit) {
+                    data_pin.write(1);
+                    GLOW_WAIT_T1H();
+
+                    data_pin.write(0);
+                    GLOW_WAIT_T1L();
+                } else {
+                    data_pin.write(1);
+                    GLOW_WAIT_T0H();
+
+                    data_pin.write(0);
+                    GLOW_WAIT_T0L();
+                }
+            }
+        }
     };
 } // namespace r2d2::led_strip
