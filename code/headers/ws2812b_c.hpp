@@ -7,7 +7,7 @@ namespace r2d2::led_strip {
 	#define LEDSTRIP_WAIT_T0H() asm volatile(".rept 6\n\tNOP\n\t.endr")
 	#define LEDSTRIP_WAIT_T0L() asm volatile(".rept 11\n\tNOP\n\t.endr")
 	#define LEDSTRIP_WAIT_T1H() asm volatile(".rept 12\n\tNOP\n\t.endr")
-    #define LEDSTRIP_WAIT_T1L() asm volatile(".rept 7\n\tNOP\n\t.endr")
+	#define LEDSTRIP_WAIT_T1L() asm volatile(".rept 7\n\tNOP\n\t.endr")
 
     template <unsigned int N>
     class ws2812b_c : public led_strip_c<N> {
