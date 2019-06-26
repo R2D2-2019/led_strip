@@ -4,10 +4,10 @@
 #include "hwlib.hpp"
 
 namespace r2d2::led_strip {
-	#define GLOW_WAIT_T0H() asm volatile(".rept 6\n\tNOP\n\t.endr")
-	#define GLOW_WAIT_T0L() asm volatile(".rept 11\n\tNOP\n\t.endr")
-	#define GLOW_WAIT_T1H() asm volatile(".rept 12\n\tNOP\n\t.endr")
-    #define GLOW_WAIT_T1L() asm volatile(".rept 7\n\tNOP\n\t.endr")
+	#define LEDSTRIP_WAIT_T0H() asm volatile(".rept 6\n\tNOP\n\t.endr")
+	#define LEDSTRIP_WAIT_T0L() asm volatile(".rept 11\n\tNOP\n\t.endr")
+	#define LEDSTRIP_WAIT_T1H() asm volatile(".rept 12\n\tNOP\n\t.endr")
+    	#define LEDSTRIP_WAIT_T1L() asm volatile(".rept 7\n\tNOP\n\t.endr")
 
 	template <unsigned int N>
     class ws2812 : public led_strip_c<N> {
@@ -50,16 +50,16 @@ namespace r2d2::led_strip {
 			for (uint8_t bit : send_bit_buffer) {
                  if (bit) {
                     data_pin.write(1);
-                    GLOW_WAIT_T1H();
+                    LEDSTRIP_WAIT_T1H();
 
                     data_pin.write(0);
-                    GLOW_WAIT_T1L();
+                    LEDSTRIP_WAIT_T1L();
                 } else {
                     data_pin.write(1);
-                    GLOW_WAIT_T0H();
+                    LEDSTRIP_WAIT_T0H();
 
                     data_pin.write(0);
-                    GLOW_WAIT_T0L();
+                    LEDSTRIP_WAIT_T0L();
                 }
             }
         }
