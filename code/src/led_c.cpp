@@ -5,7 +5,7 @@ void r2d2::led_strip::led_c::set_color(const rgb_s &rgb) {
 }
 
 void r2d2::led_strip::led_c::set_color(const hsv_s &hsv) {
-    uint8_t hue         = (hsv.hue > 360)       ? 360   : hsv.hue; 
+    uint16_t hue         = (hsv.hue > 360)       ? 360   : hsv.hue; 
     uint8_t saturation  = (hsv.saturation > 1)  ? 1     : hsv.saturation;
     uint8_t value       = (hsv.value > 1)       ? 1     : hsv.value;
 
