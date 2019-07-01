@@ -26,5 +26,5 @@ game_c(screen_c & screen, HC_SR04 & sensor_one, HC_SR04 & sensor_two, peddle_c &
     bool check_collision();
 
     void update_game();
-        
+    
 }
