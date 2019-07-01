@@ -1,6 +1,7 @@
 #pragma once
 
 #include "led_c.hpp"
+#include "hwlib.hpp"
 
 namespace r2d2::led_strip {
     template <unsigned int N>
@@ -27,7 +28,7 @@ namespace r2d2::led_strip {
          * 100% nothing happens
          */
         void set_brightness(const uint8_t &percentage) {
-            for (led_c single_led : led) {
+            for (led_c &single_led : led) {
                 single_led.set_brightness(percentage);
             }
         }
@@ -44,7 +45,8 @@ namespace r2d2::led_strip {
 
         template <typename T>
         void set_color(const T &new_color) {
-            for (led_c single_led : led) {
+
+            for (led_c &single_led : led) {
                 single_led.set_color(new_color);
             }
         }

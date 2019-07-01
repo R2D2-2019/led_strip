@@ -1,4 +1,4 @@
-#include "headers/ws2812b_c.hpp"
+#include "headers/ws2812_c.hpp"
 #include "hwlib.hpp"
 
 int main(void) {
@@ -8,47 +8,28 @@ int main(void) {
 
     auto weg = hwlib::target::pin_out(hwlib::target::pins::d8);
 
-    r2d2::led_strip::ws2812b_c<4> ledjes(weg);
+    r2d2::led_strip::ws2812<100> ledjes(weg);
 
-    r2d2::led_strip::rgb_s kleur = {128, 255, 0};
-    r2d2::led_strip::rgb_s kleur2 = {255, 0, 255};
-    r2d2::led_strip::rgb_s off = {0, 0, 0};
+    //r2d2::led_strip::rgb_s kleur = {3, 0, 0};
+    r2d2::led_strip::rgb_s kleur2 = {10, 10, 10};
+    //r2d2::led_strip::rgb_s off = {255, 255, 255};
 
 
 
-    // ledjes.set_color(kleur);
-    ledjes[0].set_color(kleur2);
-    ledjes[1].set_color(off);
-    ledjes[2].set_color(off);
-    ledjes[3].set_color(off);
+	
+	ledjes.set_color(kleur2);
 
     
     ledjes.send();
 
     for (;;) {
-        ledjes[0].set_color(kleur2);
-        ledjes[1].set_color(off);
-        ledjes[2].set_color(off);
-        ledjes[3].set_color(off);
-        ledjes.send();
-        hwlib::wait_ms(500);
-        ledjes[0].set_color(off);
-        ledjes[1].set_color(kleur);
-        ledjes[2].set_color(off);
-        ledjes[3].set_color(off);
-        ledjes.send();
-        hwlib::wait_ms(500);
-        ledjes[0].set_color(off);
-        ledjes[1].set_color(off);
-        ledjes[2].set_color(kleur2);
-        ledjes[3].set_color(off);
-        ledjes.send();
-        hwlib::wait_ms(500);
-        ledjes[0].set_color(off);
-        ledjes[1].set_color(off);
-        ledjes[2].set_color(off);
-        ledjes[3].set_color(kleur);
-        ledjes.send();
-        hwlib::wait_ms(500);
+		//ledjes.set_brightness(110);
+		
+		ledjes.set_color(kleur2);
+		//ledjes[0].set_color(off);
+		ledjes.send();
+		hwlib::wait_ms(200);
+		//kleur2.red++;
+		
     }
 }

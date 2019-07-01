@@ -48,7 +48,7 @@ public:
      *  The color is based of HSV values
      *  The HSV values get transformed in to RGB values for ease of purpose.
      */
-    void set_color(hsv_s &hsv);
+    void set_color(const hsv_s &hsv);
     
 
 	/**

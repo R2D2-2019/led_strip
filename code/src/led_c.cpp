@@ -4,17 +4,17 @@ void r2d2::led_strip::led_c::set_color(const rgb_s &rgb) {
     color = rgb;
 }
 
-void r2d2::led_strip::led_c::set_color(hsv_s &hsv) {
-    hsv.hue         = (hsv.hue > 360)       ? 360   : hsv.hue; 
-    hsv.saturation  = (hsv.saturation > 1)  ? 1     : hsv.saturation;
-    hsv.value       = (hsv.value > 1)       ? 1     : hsv.value;
+void r2d2::led_strip::led_c::set_color(const hsv_s &hsv) {
+    uint8_t hue         = (hsv.hue > 360)       ? 360   : hsv.hue; 
+    uint8_t saturation  = (hsv.saturation > 1)  ? 1     : hsv.saturation;
+    uint8_t value       = (hsv.value > 1)       ? 1     : hsv.value;
 
     //set c x & m values
-    uint8_t c = hsv.value * hsv.saturation;
+    uint8_t c = value * saturation;
     //be sure it is absolute
-    uint8_t result = (hsv.hue / 60) % 2 - 1;
+    uint8_t result = (hue / 60) % 2 - 1;
     uint8_t x = c * (1 - result);
-    uint8_t m = hsv.value - c;
+    uint8_t m = value - c;
     rgb_s newrgb;
 
     //decide the new r,g,b values
