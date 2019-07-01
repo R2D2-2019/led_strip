@@ -2,8 +2,10 @@
 
 void ball_c::update_ball()
 {
-    x_axis + ;
-    y_axis += y; 
+    if(direction_x)
+    {
+        
+    }
 }
 
 uint8_t ball_c::check_x()
