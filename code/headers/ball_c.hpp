@@ -14,4 +14,4 @@ ball_c(uint8_t x_axis, uint8_t y_axis, bool direction):
     {}
 
     void move_ball(uint8_t x, uint8_t y);
-}
+};
