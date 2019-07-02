@@ -2,40 +2,28 @@
 
 void ball_c::update_ball()
 {
-    if(direction_x && x_axis <= 9)
-    {
-        x_axis += 1;
-    }
-    else if(!direction_x && x_axis >=1)
-    {
-        x_axis -= 1;
-    }
-    if(direction_y && y_axis <= 9)
-    {
-        y_axis += 1;
-    }
-    else if(!direction_y && y_axis >= 1)
-    {
-        y_axis -= 1;
-    }
+        x_axis += direction_x;
+        y_axis += direction_y;
+
+
 }
 
-uint8_t ball_c::check_x()
+uint8_t ball_c::get_x()
 {
     return x_axis;
 }
 
-uint8_t ball_c::check_y()
+uint8_t ball_c::get_y()
 {
     return y_axis;
 }
 
-bool ball_c::get_direction_x()
+uint8_t ball_c::get_direction_x()
 {
     return direction_x;
 }
 
-bool ball_c::get_direction_y()
+uint8_t ball_c::get_direction_y()
 {
     return direction_y;
 }
