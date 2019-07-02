@@ -10,21 +10,18 @@ private:
     screen_c & screen;
     HC_SR04_c & sensor_one;
     HC_SR04_c & sensor_two;
-    peddle_c & peddle_one;
-    peddle_c & peddle_two;
-    ball_c & ball;
+    peddle_c peddle_one;
+    peddle_c peddle_two;
+    ball_c ball;
 public:
-game_c(screen_c & screen, HC_SR04 & sensor_one, HC_SR04 & sensor_two, peddle_c & peddle_one, peddle_c & peddle_two, ball_c & ball):
+game_c(screen_c & screen, HC_SR04 & sensor_one, HC_SR04 & sensor_two):
     screen(screen),
     sensor_one(sensor_one),
-    sensor_two(sensor_two),
-    peddle_one(peddle_one),
-    peddle_two(peddle_two),
-    ball(ball)
+    sensor_two(sensor_two)
     {}
 
     bool check_collision();
 
     void update_game();
     
-}
+}//gianluca is bea
