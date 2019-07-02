@@ -4,8 +4,6 @@ void ball_c::update_ball()
 {
         x_axis += direction_x;
         y_axis += direction_y;
-
-
 }
 
 uint8_t ball_c::get_x()
