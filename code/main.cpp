@@ -14,7 +14,8 @@ int main(void) {
     r2d2::led_strip::rgb_s kleur2 = {10, 10, 10};
     //r2d2::led_strip::rgb_s off = {255, 255, 255};
 
-
+    auto echo_pin = hwlib::target::pin_in(hwlib::target::pins::d7);
+    auto trigger_pin = hwlib::target::pin_out(hwlib::target::pins::d8);
 
 	
 	ledjes.set_color(kleur2);
