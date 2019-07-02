@@ -45,14 +45,6 @@ namespace r2d2::led_strip {
 
         /**
          * \brief
-         * Multiply a rgb_c by a rgb_c
-         * \details
-         * This operator* multiplies a rgb_c value by a rgb_c value.
-         */
-        rgb_c operator*(const rgb_c & rhs) const;
-
-        /**
-         * \brief
          * add a rgb_c to another rgb_c
          * \details
          * This operator+= adds a rgb_c value to a rgb_c value
