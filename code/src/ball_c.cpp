@@ -2,9 +2,21 @@
 
 void ball_c::update_ball()
 {
-    if(direction_x)
+    if(direction_x && x_axis <= 9)
     {
-        
+        x_axis += 1;
+    }
+    else if(!direction_x && x_axis >=1)
+    {
+        x_axis -= 1;
+    }
+    if(direction_y && y_axis <= 9)
+    {
+        y_axis += 1;
+    }
+    else if(!direction_y && y_axis >= 1)
+    {
+        y_axis -= 1;
     }
 }
 
