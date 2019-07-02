@@ -12,5 +12,7 @@ public:
     y_axis(y_axis)
     {}
     void move_to(const uint8_t & new_y );
+    uint8_t get_x_axis();
+    uint8_t get_y_axis();
 
 };
