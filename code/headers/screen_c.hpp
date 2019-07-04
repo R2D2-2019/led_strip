@@ -20,8 +20,8 @@ namespace r2d2::led_strip {
             leds[index].set_color(color);		
 		}
 
-        void clear() {
-            leds.set_color(rgb_s{0, 0, 0});
+        void clear(const rgb_s &color = {0, 0, 0}) {
+            leds.set_color(color);
         }
 
         void update() {

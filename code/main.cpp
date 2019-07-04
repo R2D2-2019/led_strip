@@ -1,4 +1,7 @@
-#include "headers/ws2812_c.hpp"
+#include "headers/ws2812b_c.hpp"
+#include "headers/screen_c.hpp"
+#include "headers/game_c.hpp"
+#include "headers/HC_SR04_c.hpp"
 #include "hwlib.hpp"
 
 int main(void) {
@@ -6,31 +9,32 @@ int main(void) {
     WDT->WDT_MR = WDT_MR_WDDIS;
     hwlib::wait_ms(1000);
 
-    auto weg = hwlib::target::pin_out(hwlib::target::pins::d8);
+    auto data_out = hwlib::target::pin_out(hwlib::target::pins::d8);
 
-    r2d2::led_strip::ws2812<100> ledjes(weg);
+    r2d2::led_strip::ws2812b_c<100> leds(data_out);
 
-    //r2d2::led_strip::rgb_s kleur = {3, 0, 0};
-    r2d2::led_strip::rgb_s kleur2 = {10, 10, 10};
-    //r2d2::led_strip::rgb_s off = {255, 255, 255};
+	r2d2::led_strip::screen_c screen (10, 10, leds);
 
-    auto echo_pin = hwlib::target::pin_in(hwlib::target::pins::d7);
-    auto trigger_pin = hwlib::target::pin_out(hwlib::target::pins::d8);
+
+
+    auto echo_pin = hwlib::target::pin_in(hwlib::target::pins::d2);
+    auto trigger_pin = hwlib::target::pin_out(hwlib::target::pins::d3);
 
 	
-	ledjes.set_color(kleur2);
+    auto echo_pin2 = hwlib::target::pin_in(hwlib::target::pins::d12);
+    auto trigger_pin2 = hwlib::target::pin_out(hwlib::target::pins::d11);
 
-    
-    ledjes.send();
+    R2D2::Distance::HC_SR04_c sensor1(echo_pin, trigger_pin);
+    R2D2::Distance::HC_SR04_c sensor2(echo_pin2, trigger_pin2);
+
+
+	game_c game(screen, sensor1, sensor2);
+
+
 
     for (;;) {
-		//ledjes.set_brightness(110);
-		
-		ledjes.set_color(kleur2);
-		//ledjes[0].set_color(off);
-		ledjes.send();
-		hwlib::wait_ms(200);
-		//kleur2.red++;
+            game.update_game();
+			
 		
     }
 }

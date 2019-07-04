@@ -11,7 +11,7 @@ public:
     x_axis(x_axis),
     y_axis(y_axis)
     {}
-    void move_to(const uint8_t & new_y );
+    void move_to(const uint8_t &new_x, const uint8_t &new_y);
     uint8_t get_x();
     uint8_t get_y();
 

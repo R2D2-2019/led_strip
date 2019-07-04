@@ -6,8 +6,8 @@ class ball_c
 private:
     uint8_t x_axis;
     uint8_t y_axis;
-    uint8_t direction_x;
-    uint8_t direction_y;
+    int8_t direction_x;
+    int8_t direction_y;
 public:
 ball_c(uint8_t x_axis, uint8_t y_axis, uint8_t direction_x, uint8_t direction_y):
     x_axis(x_axis),
@@ -19,8 +19,9 @@ ball_c(uint8_t x_axis, uint8_t y_axis, uint8_t direction_x, uint8_t direction_y)
     void update_ball();
     uint8_t get_x();
     uint8_t get_y();
-    uint8_t get_direction_x();
-    uint8_t get_direction_y();
+    int8_t get_direction_x();
+    int8_t get_direction_y();
     void swap_direction_x();
     void swap_direction_y();
+    void move_ball(uint8_t x, uint8_t y);
 };

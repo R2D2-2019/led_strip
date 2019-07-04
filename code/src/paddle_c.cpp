@@ -1,8 +1,8 @@
 #include <paddle_c.hpp>
 
-void paddle_c::move_to(const uint8_t & new_y) {
-    y_axis = (new_y < 3) ? 3 : new_y;
-    y_axis = (new_y > 10) ? 10 : new_y;
+void paddle_c::move_to(const uint8_t &new_x, const uint8_t &new_y) {
+    x_axis = new_x;
+    y_axis = new_y;
 
 }
 
