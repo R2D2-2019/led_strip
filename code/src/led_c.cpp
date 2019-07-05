@@ -1,6 +1,6 @@
 #include "led_c.hpp"
 
-void r2d2::led_strip::led_c::set_color(const rgb_s &rgb) {
+void r2d2::led_strip::led_c::set_color(const rgb_c &rgb) {
     color = rgb;
 }
 
@@ -15,7 +15,7 @@ void r2d2::led_strip::led_c::set_color(const hsv_s &hsv) {
     uint8_t result = (hue / 60) % 2 - 1;
     uint8_t x = c * (1 - result);
     uint8_t m = value - c;
-    rgb_s newrgb;
+    rgb_c newrgb;
 
     //decide the new r,g,b values
     switch(hsv.hue) {
@@ -42,24 +42,24 @@ void r2d2::led_strip::led_c::set_color(const hsv_s &hsv) {
             break;
     }
     //calculate the new rgb values
-    uint8_t new_red = (newrgb.red + m) * 255;
-    uint8_t new_green = (newrgb.green + m) * 255;
-    uint8_t new_blue = (newrgb.blue + m) * 255;
+    uint8_t new_red = (newrgb.get_red() + m) * 255;
+    uint8_t new_green = (newrgb.get_green() + m) * 255;
+    uint8_t new_blue = (newrgb.get_blue() + m) * 255;
     newrgb = {new_red, new_green, new_blue};
 
     set_color(newrgb);
 }
 
 void r2d2::led_strip::led_c::set_brightness(const uint8_t &percentage) {
-    uint16_t red   = color.red * percentage / 100;
-    uint16_t green = color.red * percentage / 100;
-    uint16_t blue  = color.red * percentage / 100;
+    uint16_t red   = color.get_red()   * percentage / 100;
+    uint16_t green = color.get_green() * percentage / 100;
+    uint16_t blue  = color.get_blue()  * percentage / 100;
 
-    color.red   = (red   > 255)  ? 255 : red;
-    color.green = (green > 255)  ? 255 : green;
-    color.blue  = (green > blue) ? 255 : blue;
+    color.set_red((red > 255) ? 255 : red);
+    color.set_green((green > 255)  ? 255 : green);
+    color.set_blue((blue > 255) ? 255 : blue);
 }
 
-r2d2::led_strip::rgb_s r2d2::led_strip::led_c::get_color() {
+r2d2::led_strip::rgb_c r2d2::led_strip::led_c::get_color() {
     return color;
 }

@@ -1,12 +1,12 @@
 #pragma once
 
 #include "hsv_s.hpp"
-#include "rgb_s.hpp"
+#include "rgb_c.hpp"
 
 namespace r2d2::led_strip {
     class led_c {
 private:
-    rgb_s color;
+    rgb_c color;
 
 public:
     /**
@@ -38,7 +38,7 @@ public:
      *  The maximum values are 255
 	 *  The minimum values are 0
      */
-    void set_color(const rgb_s &rgb);
+    void set_color(const rgb_c &rgb);
 
     /**
      *  \brief
@@ -67,7 +67,7 @@ public:
      * 
      *  @return returns a struct of RGB values
      */
-    rgb_s get_color();
+    rgb_c get_color();
 
     };
 } //namespace R2D2
