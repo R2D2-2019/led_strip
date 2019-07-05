@@ -47,10 +47,10 @@ namespace r2d2::led_strip {
             uint16_t index = 0;
 
             for (unsigned int i = 0; i < N; i++) {
-                rgb_s rgb_buffer = (*this)[i].get_color();
-                grb_buffer[0] = rgb_buffer.green;
-                grb_buffer[1] = rgb_buffer.red;
-                grb_buffer[2] = rgb_buffer.blue;
+                rgb_c rgb_buffer = (*this)[i].get_color();
+                grb_buffer[0] = rgb_buffer.get_green();
+                grb_buffer[1] = rgb_buffer.get_red();
+                grb_buffer[2] = rgb_buffer.get_blue();
 
                 for (auto sending_color : grb_buffer) {
                     for (unsigned int i = 0; i < 8; i++) {

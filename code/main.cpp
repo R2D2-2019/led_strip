@@ -1,4 +1,4 @@
-#include "headers/ws2812_c.hpp"
+#include "headers/ws2812b_c.hpp"
 #include "hwlib.hpp"
 
 int main(void) {
@@ -8,11 +8,11 @@ int main(void) {
 
     auto weg = hwlib::target::pin_out(hwlib::target::pins::d8);
 
-    r2d2::led_strip::ws2812<100> ledjes(weg);
+    r2d2::led_strip::ws2812b_c<100> ledjes(weg);
 
-    //r2d2::led_strip::rgb_s kleur = {3, 0, 0};
-    r2d2::led_strip::rgb_s kleur2 = {10, 10, 10};
-    //r2d2::led_strip::rgb_s off = {255, 255, 255};
+    //r2d2::led_strip::rgb_c kleur = {3, 0, 0};
+    r2d2::led_strip::rgb_c kleur2 = {10, 10, 10};
+    //r2d2::led_strip::rgb_c off = {255, 255, 255};
 
 
 

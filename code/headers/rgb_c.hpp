@@ -18,11 +18,37 @@ namespace r2d2::led_strip {
         uint8_t blue;
 
     public:
+        rgb_c() {}
+
         rgb_c(const uint8_t & red, const uint8_t & green, const uint8_t & blue):
         red(red),
         green(green),
         blue(blue)
         {}
+
+		inline const uint8_t &get_red() {
+            return red;
+        }
+
+		inline const uint8_t &get_green() {
+            return green;
+        }
+
+		inline const uint8_t &get_blue() {
+            return blue;
+        }
+
+		inline void set_red(const uint8_t &new_red) {
+            red = new_red;
+        }
+
+		inline void set_green(const uint8_t &new_green) {
+            green = new_green;
+        }
+
+		inline void set_blue(const uint8_t &new_blue) {
+            blue = new_blue;
+        }
 
         /**
          * \brief
