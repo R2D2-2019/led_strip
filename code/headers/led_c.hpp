@@ -17,7 +17,7 @@ public:
      */
     led_c() {};
 
-	/**
+    /**
      *  \brief
      *  templated constructor for both colors or even more
      *
@@ -51,7 +51,7 @@ public:
     void set_color(const hsv_s &hsv);
     
 
-	/**
+    /**
      *  \brief
      *  function that increases or decreases the brightness by given percentage 0% - 255%
      *
