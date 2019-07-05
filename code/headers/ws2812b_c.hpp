@@ -64,7 +64,7 @@ namespace r2d2::led_strip {
                 }
             }
 
-			for (uint8_t bit : send_bit_buffer) {
+		 for (uint8_t bit : send_bit_buffer) {
                  if (bit) {
                     data_pin.write(1);
                     LEDSTRIP_WAIT_T1H();
