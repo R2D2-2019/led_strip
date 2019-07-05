@@ -42,7 +42,12 @@ namespace r2d2::led_strip {
         led_c &operator[](unsigned int x) {
             return led[x % N];
         }
-
+       /*
+        *  \brief
+        *  template used for calling the set color function for each led
+        *
+        *  by calling this function with either a rgb of hsv value it will automaticly call the correct function
+        */
         template <typename T>
         void set_color(const T &new_color) {
 
