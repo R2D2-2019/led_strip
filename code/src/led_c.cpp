@@ -6,8 +6,8 @@ void r2d2::led_strip::led_c::set_color(const rgb_c &rgb) {
 
 void r2d2::led_strip::led_c::set_color(const hsv_s &hsv) {
     uint16_t hue         = (hsv.hue > 360)       ? 360   : hsv.hue; 
-    uint8_t saturation  = (hsv.saturation > 1)  ? 1     : hsv.saturation;
-    uint8_t value       = (hsv.value > 1)       ? 1     : hsv.value;
+    float saturation  = (hsv.saturation > 100)  ? 1     : (hsv.saturation / 100);
+    float value       = (hsv.value > 100)       ? 1     : (hsv.value / 100);
 
     //set c x & m values
     uint8_t c = value * saturation;
